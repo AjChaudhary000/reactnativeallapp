@@ -1,0 +1,6 @@
+/node_modules
+yarn.lock
+package-lock.json
+/img/upload/avatar/*
+/img/upload/products/*
+/img/upload/shop/*

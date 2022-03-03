@@ -59,8 +59,6 @@ if (isloading){
     </Stack.Navigator>
   } 
   </NavigationContainer>
-
- 
 );
 }
 export default App;

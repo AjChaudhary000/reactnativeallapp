@@ -1,0 +1,51 @@
+<div class="container">
+    <img src="/images/app1.png" class="mb-5" />
+    <h1>APP 01 Configuration Dashboard</h1>
+    <form action="/dashboard/addcategory" method="POST">
+        <div class="addcat">
+            <div>
+                <label for="cat">Add Category</label>
+                <input class="form-control mt-2" id="cat" placeholder="Add Category" name="name" />
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Add</button>
+        </div>
+    </form>
+    <div class="category-wrapper">
+        {{#each cats}}
+        <div class="category">
+            {{this.name}}
+            <button class="btn" onclick="deleteCat('{{this._id}}')"><i class="fa fa-close"></i></button>
+        </div>
+        {{/each}}
+    </div>
+    <div class="mt-5">
+        <h2>Commission %</h2>
+        <form action="/dashboard/settings" method="POST">
+            <div class="md">
+                <div class="mt-2">
+                    <label for="cat">Commission #1</label>
+                    <input value="{{comm1}}" class="form-control" id="com1" placeholder="Commission #1" name="com1" />
+                </div>
+
+                <div class="mt-2">
+                    <label for="cat">Commission #2</label>
+                    <input value="{{comm2}}" class="form-control" id="com2" placeholder="Commission #2" name="com2" />
+                </div>
+
+                <div class="mt-2">
+                    <label for="cat">Commission #3</label>
+                    <input value="{{comm3}}" class="form-control" id="com3" placeholder="Commission #3" name="com3" />
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-5">
+        <h2>Legal</h2>
+        <form action="/dashboard/legal" method="POST">
+            <textarea class="legal" name="legal">{{legal}}</textarea>
+            <button type="submit" class="btn btn-primary mt-4">Save</button>
+        </form>
+    </div>
+</div> <!-- /container -->

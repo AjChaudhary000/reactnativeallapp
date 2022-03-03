@@ -1,0 +1,50 @@
+const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
+
+const UserSchema = new Schema({
+  avatar: {
+    type: String,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  first_name: {
+    type: String,
+  },
+  last_name: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+  stripe_customer_id: String,
+  connect_id: String,
+  onboarded: { type: Boolean, default: false },
+});
+UserSchema.pre("save", async function (next) {
+  const user = this;
+  const hash = await bcrypt.hash(this.password, 10);
+
+  this.password = hash;
+  next();
+});
+
+UserSchema.methods.isValidPassword = async function (password) {
+  const user = this;
+  const compare = await bcrypt.compare(password, user.password);
+  return compare;
+};
+const UserModel = mongoose.model("user", UserSchema);
+
+module.exports = UserModel;
